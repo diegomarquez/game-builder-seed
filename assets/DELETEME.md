@@ -1,0 +1,1 @@
+You can use this folder to put in visual, audio and other kind of assets.
