@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "additionalSrcPaths": "",
   "additionalAssetPaths": "",
+  "frameworkRepo": "git@github.com:diegomarquez/game-builder.git",
   "framework": "./game-builder",
   "lib": "./lib",
   "frameworkTag": "latest",
