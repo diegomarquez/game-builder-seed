@@ -1,5 +1,8 @@
-var webfonts = {
-	// Refer [Web font loader](https://github.com/typekit/webfontloader) for details on how it should look like.
+define(function() {
+	var Data = function() {};
+
+	var data = {
+	// Refer to [Web font loader](https://github.com/typekit/webfontloader) for details on how it should look like.
 	// This assumes you will be using [Google Fonts](https://www.google.com/fonts), but there are other options
 	data: {
 		// google: {
@@ -15,4 +18,11 @@ var webfonts = {
 	// Set this to false if you don't want to load any external fonts with the [Web font loader](https://github.com/typekit/webfontloader)
 	// Leave this as false if you are not using any fonts, otherwise the loading fails.
 	loadFonts: false
-}
+};
+
+	Data.prototype.get = function() {
+		return data;
+	}
+
+	return new Data();
+});
