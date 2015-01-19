@@ -19,6 +19,10 @@ module.exports = function(grunt) {
   var assetPaths = p.additionalAssetPaths.split(',');
   assetPaths.push(assetsDir);
 
+  assetPaths = assetPaths.filter(function(path) {
+  	return path.trim() != "";
+  });
+
   var assetSelectorsProd = assetPaths.map(function(path) {
   	return { 
   		expand: true, 
@@ -185,7 +189,7 @@ module.exports = function(grunt) {
     'requirejs': {
       'options': {
         baseUrl: './',
-        name: '../../lib/almond/almond',
+        name: t('<%= p.lib %>/almond/almond', {data: {p:p}}),
         mainConfigFile: generatedDir + 'config.js',
         include: ['pre-load', 'main'],
         wrapShim: true,
