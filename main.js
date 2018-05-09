@@ -1,11 +1,11 @@
-define(function(require){	
+define(function(require){
 	var gb = require('gb');
 
 	// Storing some references to avoid excesive typing
 	var game = gb.game;
 
 	// This is the main initialization function
-	game.on(game.CREATE, this, function() {	
+	game.on(game.CREATE, this, function() {
 		console.log("Welcome to Game-Builder!");
 	});
 
