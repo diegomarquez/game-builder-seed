@@ -7,7 +7,7 @@
 		// },
 	},
 
-	// Set a version of [Web font loader](https://github.com/typekit/webfontloader) to download from 
+	// Set a version of [Web font loader](https://github.com/typekit/webfontloader) to download from
 	// [Google](https://developers.google.com/speed/libraries/devguide#webfont)
 	// A value of '1' links to the latest 1.x version
 	version: '1',
