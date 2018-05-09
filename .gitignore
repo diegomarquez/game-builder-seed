@@ -4,3 +4,4 @@ game-builder
 build
 build/dev
 build/prod
+generated/**
