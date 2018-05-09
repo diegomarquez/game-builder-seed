@@ -1,32 +1,54 @@
 var path = require('path');
 
 module.exports = function(grunt) {
-  grunt.registerMultiTask('create-data-module', function() {		
+	grunt.registerMultiTask('create-data-modules', function() {
+		var template = this.options().template;
+
 		for (var i = 0; i < this.files.length; i++) {
 			var file = this.files[i];
 
-			var src = file.src;
+			var glob = file.src;
 			var dest = file.dest;
-			
-			// Process the template 
-			var r = grunt.template.process(grunt.file.read('tasks/templates/data-module-template.txt'), { 
-				data: { 		
-					data: grunt.file.read(src)
+			var writeMode = file.writeMode;
+			var removeWhiteSpace = file.removeWhiteSpace;
+
+			for (var j=0; j < glob.length; j++) {
+				var src = glob[j];
+
+				var data;
+
+				if (writeMode == 'string') {
+					data = "'" + grunt.file.read(src) + "'";
 				}
-			});
-			
-			var extension = path.extname(src);
+				else {
+					data = grunt.file.read(src);
+				}
 
-			// Destination path
-			var name = dest + path.basename(src, extension) + '.js';
+				if (removeWhiteSpace) {
+					data = data.replace(/\s/g, '');
+				}
 
-			// Delete the file if it already exists
-			if (grunt.file.isFile(name)) {
-		      grunt.file.delete(name, {force: true});  
-		    }
+				var extension = path.extname(src);
+				var baseName = path.basename(src, extension);
 
-		    // Write the file
-		    grunt.file.write(name, r);
+				// Process the template
+				var r = grunt.template.process(grunt.file.read('tasks/templates/' + template), {
+					data: {
+						name: baseName,
+						data: data
+					}
+				});
+
+				// Destination path
+				var name = dest + baseName + '.js';
+
+				// Delete the file if it already exists
+				if (grunt.file.isFile(name)) {
+					grunt.file.delete(name, {force: true});
+				}
+
+				grunt.file.write(name, r);
+			}
 		};
 	});
 }
