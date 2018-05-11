@@ -5,3 +5,4 @@ build
 build/dev
 build/prod
 generated/**
+styles/css/all_styles.css
