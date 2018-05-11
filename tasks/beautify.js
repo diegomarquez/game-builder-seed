@@ -1,4 +1,5 @@
-var beautify = require('js-beautify').js_beautify;
+var beautify = require('js-beautify')
+	.js_beautify;
 
 module.exports = function(grunt) {
 	grunt.registerTask('beautify', function() {
@@ -16,8 +17,8 @@ module.exports = function(grunt) {
 		var files = [];
 		var glob = '/**/*.js';
 
-		for(var i = 0; i < paths.length; i++) {
-			if(paths[i] != "") {
+		for (var i = 0; i < paths.length; i++) {
+			if (paths[i] != "") {
 				files = files.concat(grunt.file.expand(paths[i] + glob));
 			}
 		}
@@ -25,8 +26,8 @@ module.exports = function(grunt) {
 		files.push("main.js");
 		files.push("Gruntfile.js");
 
-		for(var i = 0; i < files.length; i++) {
-			if(files[i] != "") {
+		for (var i = 0; i < files.length; i++) {
+			if (files[i] != "") {
 				var n = files[i];
 
 				console.log(n);
@@ -45,12 +46,13 @@ module.exports = function(grunt) {
 				});
 
 				if (grunt.file.isFile(n)) {
-					grunt.file.delete(n, { force: true });
+					grunt.file.delete(n, {
+						force: true
+					});
 				}
-				
+
 				grunt.file.write(n, r);
 			}
 		}
 	});
 };
-

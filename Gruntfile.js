@@ -1,12 +1,14 @@
 var path = require('path');
 
-function generateUUID(){
-	var d = new Date().getTime();
+function generateUUID() {
+	var d = new Date()
+		.getTime();
 
 	var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-		var r = (d + Math.random()*16)%16 | 0;
-		d = Math.floor(d/16);
-		return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+		var r = (d + Math.random() * 16) % 16 | 0;
+		d = Math.floor(d / 16);
+		return (c == 'x' ? r : (r & 0x3 | 0x8))
+			.toString(16);
 	});
 
 	return uuid;
@@ -45,8 +47,17 @@ module.exports = function(grunt) {
 		}
 	});
 
-	assetSelectorsProd.push({ expand: true, src: stylesCssDir + allStylesFilename, dest: buildProdDir });
-	assetSelectorsProd.push({ expand: true, cwd: stylesDir, src: assetsDir + '/**', dest: buildProdDir + stylesDir });
+	assetSelectorsProd.push({
+		expand: true,
+		src: stylesCssDir + allStylesFilename,
+		dest: buildProdDir
+	});
+	assetSelectorsProd.push({
+		expand: true,
+		cwd: stylesDir,
+		src: assetsDir + '/**',
+		dest: buildProdDir + stylesDir
+	});
 
 	var assetSelectorsDev = assetPaths.map(function(path) {
 		return {
@@ -57,11 +68,21 @@ module.exports = function(grunt) {
 		}
 	});
 
-	assetSelectorsDev.push({ expand: true, src: stylesCssDir + allStylesFilename, dest: buildDevDir });
-	assetSelectorsDev.push({ expand: true, cwd: stylesDir, src: assetsDir + '/**', dest: buildDevDir + stylesDir });
+	assetSelectorsDev.push({
+		expand: true,
+		src: stylesCssDir + allStylesFilename,
+		dest: buildDevDir
+	});
+	assetSelectorsDev.push({
+		expand: true,
+		cwd: stylesDir,
+		src: assetsDir + '/**',
+		dest: buildDevDir + stylesDir
+	});
 
 	// Making sure that this path has the correct separator. Just in case.
-	p.framework = p.framework.split(/[/|\\]/).join(path.sep);
+	p.framework = p.framework.split(/[/|\\]/)
+		.join(path.sep);
 
 	grunt.initConfig({
 		pkg: p,
@@ -95,7 +116,11 @@ module.exports = function(grunt) {
 
 			// Clone game-builder from github
 			'framework': {
-				command: t('git clone -b <%= p.frameworkTag %> <%= p.frameworkRepo %> <%= p.framework %>', {data: {p:p}})
+				command: t('git clone -b <%= p.frameworkTag %> <%= p.frameworkRepo %> <%= p.framework %>', {
+					data: {
+						p: p
+					}
+				})
 			}
 		},
 
@@ -114,7 +139,9 @@ module.exports = function(grunt) {
 		},
 
 		'clean': {
-			'options': { force: true },
+			'options': {
+				force: true
+			},
 
 			// Clean the folder where game-builder is downloaded
 			'framework': {
@@ -138,8 +165,8 @@ module.exports = function(grunt) {
 
 		'open': {
 			// Open index.html with the default browser
-			'index' : {
-				path : 'index.html'
+			'index': {
+				path: 'index.html'
 			}
 		},
 
@@ -271,7 +298,7 @@ module.exports = function(grunt) {
 		// Merge files to create asset-map.js
 		'merge-json': {
 			'map': {
-				src: [ generatedDir + 'asset-map.json', configDir + 'remote-assets.json'],
+				src: [generatedDir + 'asset-map.json', configDir + 'remote-assets.json'],
 				dest: generatedDir + 'asset-map.json'
 			}
 		},
@@ -290,7 +317,7 @@ module.exports = function(grunt) {
 			},
 			'font-data': {
 				options: {
-						template: "json-data-module-template.txt"
+					template: "json-data-module-template.txt"
 				},
 				files: [
 					{

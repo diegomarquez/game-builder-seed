@@ -12,17 +12,18 @@ module.exports = function(grunt) {
 
 		var files = [];
 
-		for(var i = 0; i < paths.length; i++) {
-				if(paths[i] != "") {
-					files = files.concat(grunt.file.expandMapping(paths[i] + '/**/*.*', '', options).map(function(match) {
-					return match.dest;
-				}));
+		for (var i = 0; i < paths.length; i++) {
+			if (paths[i] != "") {
+				files = files.concat(grunt.file.expandMapping(paths[i] + '/**/*.*', '', options)
+					.map(function(match) {
+						return match.dest;
+					}));
 			}
 		}
 
 		paths = {};
 
-		for(var i = 0; i < files.length; i++) {
+		for (var i = 0; i < files.length; i++) {
 			var file = files[i];
 
 			var base = path.basename(file);
@@ -34,10 +35,13 @@ module.exports = function(grunt) {
 
 		// Write the contents of processing the previous template into config.js
 		// If the file already exists, it is deleted
-		var name = this.options().generatedDir + 'asset-map.json';
+		var name = this.options()
+			.generatedDir + 'asset-map.json';
 
 		if (grunt.file.isFile(name)) {
-			grunt.file.delete(name, {force: true});
+			grunt.file.delete(name, {
+				force: true
+			});
 		}
 
 		grunt.file.write(name, JSON.stringify(paths, null, '\t'));

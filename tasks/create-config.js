@@ -1,5 +1,6 @@
 var path = require('path');
-var beautify = require('js-beautify').js_beautify;
+var beautify = require('js-beautify')
+	.js_beautify;
 
 module.exports = function(grunt) {
 	grunt.registerTask('create-config', function() {
@@ -7,9 +8,12 @@ module.exports = function(grunt) {
 		var options = this.options();
 
 		// Making sure that this path has the correct separator. Just in case.
-		p.additionalSrcPaths = p.additionalSrcPaths ? p.additionalSrcPaths.split(/[/|\\]/).join(path.sep) : "";
-		p.framework	= p.framework.split(/[/|\\]/).join(path.sep);
-		p.lib = p.lib.split(/[/|\\]/).join(path.sep);
+		p.additionalSrcPaths = p.additionalSrcPaths ? p.additionalSrcPaths.split(/[/|\\]/)
+			.join(path.sep) : "";
+		p.framework = p.framework.split(/[/|\\]/)
+			.join(path.sep);
+		p.lib = p.lib.split(/[/|\\]/)
+			.join(path.sep);
 
 		var paths = [];
 
@@ -22,8 +26,8 @@ module.exports = function(grunt) {
 		var files = [];
 		var glob = '/**/*.js';
 
-		for(var i=0; i<paths.length; i++) {
-			if(paths[i] != "") {
+		for (var i = 0; i < paths.length; i++) {
+			if (paths[i] != "") {
 				files = files.concat(grunt.file.expand(paths[i] + glob));
 			}
 		}
@@ -31,18 +35,24 @@ module.exports = function(grunt) {
 		// Create path objects to create the needed requirejs configuration for each file
 		paths = [];
 
-		for(var i=0; i<files.length; i++) {
+		for (var i = 0; i < files.length; i++) {
 			var base = path.basename(files[i], '.js');
 			var dir = path.dirname(files[i]);
 			var p = dir + '/' + base;
 
-			paths.push({alias:base, path:p});
+			paths.push({
+				alias: base,
+				path: p
+			});
 		}
 
 		var libPaths = grunt.file.readJSON(options.configDir + 'lib-paths.json');
 
 		for (var k in libPaths) {
-			paths.push({alias:k, path:libPaths[k]});
+			paths.push({
+				alias: k,
+				path: libPaths[k]
+			});
 		}
 
 		var r = grunt.template.process(grunt.file.read('tasks/templates/requirejs-config-template.txt'), {
@@ -52,15 +62,19 @@ module.exports = function(grunt) {
 			}
 		});
 
-		r = beautify(r, { preserve_newlines: false });
+		r = beautify(r, {
+			preserve_newlines: false
+		});
 
 		// Write the contents of processing the previous template into config.js
 		// If the file already exists, it is deleted
 		var name = options.generatedDir + 'config.js'
 		if (grunt.file.isFile(name)) {
-			grunt.file.delete(name, {force: true});
+			grunt.file.delete(name, {
+				force: true
+			});
 		}
-		
+
 		grunt.file.write(name, r);
 	});
 };

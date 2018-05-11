@@ -2,7 +2,8 @@ var path = require('path');
 
 module.exports = function(grunt) {
 	grunt.registerMultiTask('create-data-modules', function() {
-		var template = this.options().template;
+		var template = this.options()
+			.template;
 
 		for (var i = 0; i < this.files.length; i++) {
 			var file = this.files[i];
@@ -12,15 +13,14 @@ module.exports = function(grunt) {
 			var writeMode = file.writeMode;
 			var removeWhiteSpace = file.removeWhiteSpace;
 
-			for (var j=0; j < glob.length; j++) {
+			for (var j = 0; j < glob.length; j++) {
 				var src = glob[j];
 
 				var data;
 
 				if (writeMode == 'string') {
 					data = "'" + grunt.file.read(src) + "'";
-				}
-				else {
+				} else {
 					data = grunt.file.read(src);
 				}
 
@@ -44,7 +44,9 @@ module.exports = function(grunt) {
 
 				// Delete the file if it already exists
 				if (grunt.file.isFile(name)) {
-					grunt.file.delete(name, {force: true});
+					grunt.file.delete(name, {
+						force: true
+					});
 				}
 
 				grunt.file.write(name, r);
