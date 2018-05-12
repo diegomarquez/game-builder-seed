@@ -8,4 +8,4 @@ generated/**
 styles/css/all_styles.css
 src/asset-map.js
 src/preload-map.js
-src/font-map.js
+src/font-data.js
