@@ -13,7 +13,6 @@ module.exports = function(grunt) {
 		paths.push('src');
 		paths.push('tasks');
 
-
 		var files = [];
 		var glob = '/**/*.js';
 

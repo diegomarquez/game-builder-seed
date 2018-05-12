@@ -1,4 +1,6 @@
 var path = require('path');
+var beautify = require('js-beautify')
+	.js_beautify;
 
 module.exports = function(grunt) {
 	grunt.registerMultiTask('create-data-modules', function() {
@@ -48,6 +50,17 @@ module.exports = function(grunt) {
 						force: true
 					});
 				}
+
+				r = beautify(r, {
+					indent_with_tabs: true,
+					end_with_newline: true,
+					indent_level: 0,
+					preserve_newlines: true,
+					max_preserve_newlines: 10,
+					break_chained_methods: true,
+					keep_array_indentation: true,
+					brace_style: "collapse"
+				});
 
 				grunt.file.write(name, r);
 			}

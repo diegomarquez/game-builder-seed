@@ -6,3 +6,6 @@ build/dev
 build/prod
 generated/**
 styles/css/all_styles.css
+src/asset-map.js
+src/preload-map.js
+src/font-map.js

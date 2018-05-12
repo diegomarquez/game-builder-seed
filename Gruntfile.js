@@ -308,6 +308,17 @@ module.exports = function(grunt) {
 					}
 				]
 			},
+			'preload-map': {
+				options: {
+					template: "json-data-module-template.txt"
+				},
+				files: [
+					{
+						src: [generatedDir + 'preload-map.json'],
+						dest: 'src/'
+					}
+				]
+			},
 			'font-data': {
 				options: {
 					template: "json-data-module-template.txt"

@@ -63,7 +63,14 @@ module.exports = function(grunt) {
 		});
 
 		r = beautify(r, {
-			preserve_newlines: false
+			indent_with_tabs: true,
+			end_with_newline: true,
+			indent_level: 0,
+			preserve_newlines: true,
+			max_preserve_newlines: 10,
+			break_chained_methods: true,
+			keep_array_indentation: true,
+			brace_style: "collapse"
 		});
 
 		// Write the contents of processing the previous template into config.js
