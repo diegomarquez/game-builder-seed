@@ -2,7 +2,7 @@
   "name": "seed",
   "version": "0.1.0",
   "additionalSrcPaths": "",
-  "additionalAssetPaths": "",
+  "additionalAssetPaths": "./game-builder/assets",
   "frameworkRepo": "git@github.com:diegomarquez/game-builder.git",
   "framework": "./game-builder",
   "lib": "./lib",
@@ -17,11 +17,11 @@
     "grunt-contrib-less": "~0.12.0",
     "grunt-contrib-requirejs": "~0.4.4",
     "grunt-merge-json": "^0.9.6",
-    "grunt-open": "~0.2.2",
     "grunt-shell": "~0.6.4",
-    "js-beautify": "^1.6.4"
+    "js-beautify": "^1.6.4",
+    "open": "0.0.5"
   },
   "devDependencies": {
-    "express": "^4.13.4"
+    "grunt-contrib-connect": "^1.0.2"
   }
 }

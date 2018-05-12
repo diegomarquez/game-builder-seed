@@ -163,13 +163,6 @@ module.exports = function(grunt) {
 			}
 		},
 
-		'open': {
-			// Open index.html with the default browser
-			'index': {
-				path: 'index.html'
-			}
-		},
-
 		'less': {
 			'target': {
 				options: {
@@ -342,6 +335,19 @@ module.exports = function(grunt) {
 					cacheBustingId: cacheBustingId
 				}
 			}
+		},
+
+		'connect': {
+			server: {
+				options: {
+					port: 5000,
+					hostname: 'localhost',
+					keepalive: true,
+					onCreateServer: function(server, connect, options) {
+						require('open')("http://localhost:5000/index.html");
+					}
+				}
+			}
 		}
 	});
 
@@ -350,11 +356,11 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-shell');
-	grunt.loadNpmTasks('grunt-open');
 	grunt.loadNpmTasks('grunt-merge-json');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-requirejs');
+	grunt.loadNpmTasks('grunt-contrib-connect');
 
 	// Local tasks
 	grunt.loadTasks('tasks');
@@ -372,13 +378,10 @@ module.exports = function(grunt) {
 	grunt.registerTask('framework', ['clean:framework', 'shell:framework']);
 	// This task builds the css stylesheet
 	grunt.registerTask('css', ['clean:css', 'less', 'concat:generated_sans_main', 'concat:plain_sans_main', 'concat:append_main']);
-	// This task opens index.html
-	grunt.registerTask('run', ['open:index']);
+	// This task starts a local server for development
+	grunt.registerTask('serve', ['connect']);
 	// Refreshes all the data
-	grunt.registerTask('refresh', ['css', 'asset-map-dev', 'copy:vendor-to-lib']);
-	// Refreshes all the data before opening index.html
-	grunt.registerTask('refresh-and-open', ['refresh', 'open:index']);
-
+	grunt.registerTask('refresh', ['css', 'asset-map-dev', 'copy:vendor-to-lib', 'serve']);
 	// This task sets up the development environment
 	grunt.registerTask('setup', ['shell:bower', 'framework', 'css', 'asset-map-dev', 'copy:vendor-to-lib']);
 

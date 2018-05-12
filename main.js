@@ -11,12 +11,12 @@ define(function(require) {
 
 	// This is called when the canvas looses focus
 	game.on(game.BLUR, this, function() {
-		console.log('empty has lost focus');
+		console.log('Lost focus');
 	});
 
 	// This is called when the canvas regains focus
 	game.on(game.FOCUS, this, function() {
-		console.log('empty has regained focus');
+		console.log('Regained focus');
 	});
 
 	// This is the main update loop
