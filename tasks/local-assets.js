@@ -59,8 +59,7 @@ module.exports = function(grunt) {
 					if (!subdir) {
 						if (grunt.file.exists(rootdir + '/.preload'))
 							files.push(abspath);
-					}
-					else {
+					} else {
 						if (grunt.file.exists(rootdir + subdir + '/.preload'))
 							files.push(abspath);
 					}
