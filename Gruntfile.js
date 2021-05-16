@@ -109,6 +109,10 @@ module.exports = function(grunt) {
 		},
 
 		'shell': {
+			options: {
+           		stderr: true
+        	},
+
 			// Run bower from grunt.
 			'bower': {
 				command: 'bower install'
@@ -308,7 +312,7 @@ module.exports = function(grunt) {
 					}
 				]
 			},
-			'preload-map': {
+			'preload-assets': {
 				options: {
 					template: "json-data-module-template.txt"
 				},

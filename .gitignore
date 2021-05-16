@@ -7,5 +7,5 @@ build/prod
 generated/**
 styles/css/all_styles.css
 src/asset-map.js
-src/preload-map.js
+src/preload-assets.js
 src/font-data.js

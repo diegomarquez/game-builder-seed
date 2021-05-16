@@ -42,7 +42,7 @@ module.exports = function(grunt) {
 				});
 
 				// Destination path
-				var name = dest + baseName + '.js';
+				var name = dest + this.target + '.js';
 
 				// Delete the file if it already exists
 				if (grunt.file.isFile(name)) {
